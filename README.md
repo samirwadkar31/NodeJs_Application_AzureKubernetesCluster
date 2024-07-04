@@ -25,7 +25,11 @@ Then, need to perform Deploy To AKS task, which will pull the image from ACR wit
 
 ![image](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/f668c1d1-5d51-4630-a4c2-b0309d388fc2)
 
-Now, let's run some kubectl commands, get the load balancer external ip and run our application at http port 80. (default port for Node.js is 3000; port mapping 80:30000 is done in manifest file)
+Deployment is succeeded!! Hurrray :)
+
+![image](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/985fe42b-4bf7-4d60-85f5-cde55dfa14c4)
+
+Now, let's run some kubectl commands, get the load balancer external ip and run our application at http port 80. (default port for Node.js is 3000; port mapping 80:3000 is done in manifest file)
 
 ![image](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/d96e15d4-2a04-4eaf-84a7-a095b33e0a0c)
 
