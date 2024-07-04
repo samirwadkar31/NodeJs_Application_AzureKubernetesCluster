@@ -10,7 +10,7 @@ Azure Repo: Here, source code, dockerfile & manifest files are present.
 
 ![image](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/207ae9ba-12f6-4602-b007-12b105939997)
 
-Create ACR & AKS on Azure cloud. Give necessary permission in ACR(Admin user) so that AKS woould not face any issue while pulling the image from ACR repository.
+Create ACR & AKS on Azure cloud. Give necessary permission in ACR (Under Access Policies, enable Admin user checkbox) so that AKS woould not face any issue while pulling the image from ACR repository.
 
 ACR:
 ![image](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/66b997fe-b498-4bf6-9df3-4a6a0f3bfe53)
