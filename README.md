@@ -21,7 +21,7 @@ AKS:
 
 Create a service connection to Azure Resource Manager using SPN in ADO and give the necessary IAM permissions to this SPN at subscription/resourcegroup/resource level on Azure for the secure access & deployment to ACR/AKS.<br>
 
-We need to build the image and push it to private azure container registry (ACR) on Azure Cloud. <br>
+We need to build the docker image and push it to private azure container registry (ACR) on Azure Cloud. <br>
 Then, need to perform Deploy To AKS task, which will pull the image from ACR with the help of manifest file and deploy it on AKS container pods.
 
 ![image](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/f668c1d1-5d51-4630-a4c2-b0309d388fc2)
@@ -52,7 +52,7 @@ Pre-requisite: Install Azure CLI, Docker & Kubectl to your local machine<br>
 
 Start docker engine and open your VS code IDE. <br>
 
-### Step 1: Build the Image
+### Step 1: Build the Docker Image
 
 ![Screenshot 2024-07-05 115113](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/31054992-041b-4dd9-b66d-e66afa6057a2)
 
