@@ -10,7 +10,8 @@ Azure Repo: Here, source code, dockerfile & manifest files are present.
 
 ![image](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/207ae9ba-12f6-4602-b007-12b105939997)
 
-Create ACR & AKS on Azure cloud. Give necessary permission in ACR (Under Access Policies, enable Admin user checkbox) so that AKS woould not face any issue while pulling the image from ACR repository.
+Create ACR(Azure Container Registry) & AKS(Azure Kuberentes Service) on Azure cloud.<br>
+Give necessary permission in ACR (Under Access Policies, enable Admin user checkbox) so that AKS woould not face any issue while pulling the image from ACR repository.
 
 ACR:
 ![image](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/66b997fe-b498-4bf6-9df3-4a6a0f3bfe53)
@@ -43,3 +44,47 @@ When we paste load_balancer_ip:80 (80 is http port) in browser, AKS service comp
 ![image](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/38b8b832-b042-4133-901e-3471d06fae2d)
 
 For better understanding of port mapping, please check manifest.yaml file provided in the repo.
+
+  ## VS Code
+We can deploy our nodejs app to Azure Kuberenetes Cluster(AKS) using VS code.
+
+Pre-requisite: Install Azure CLI, Docker & Kubectl to your local machine<br>
+
+Start docker engine and open your VS code IDE. <br>
+
+### Step 1: Build the Image
+
+![Screenshot 2024-07-05 115113](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/31054992-041b-4dd9-b66d-e66afa6057a2)
+
+Image is built successfully!!
+
+![Screenshot 2024-07-05 131454](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/a4a5d30d-9d5a-461a-b53c-7a5b8d0232b0)
+
+### Step 2: Push the Image to Private registry on Azure (ACR-Azure Container Registry).
+
+First login to ACR, tag our built image with azercr.io standard image then push tagged image to ACR.
+
+![image](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/da4616fc-ad6a-4f2a-bd04-9c2adbfeb6c0)
+
+Image is successfully pushed to the ACR.
+
+![image](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/e4c3b5c2-37a0-4868-bdb3-122b2afd7343)
+
+Let's verify on ACR repository:<br>
+It conatins our latest pushed image! :)
+
+![image](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/c8051801-85d1-47a4-8415-110fb6e0bdf6)
+
+### Step 3: Deploy manifest.yaml to AKS using Kubectl commands.
+
+Let's create 2 pods of our nodejs application and deploy it on AKS.(Mention replicas: 2 in your manifest.yaml file)
+
+Initially, pod count was 0 after the kubectl apply command, pod count got increased to 2.
+
+![image](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/234f8f01-b157-4f78-8c2f-2afb70d4416f)
+
+Let's copy this exteranl ip of load balancer and test it on our browser.
+
+![image](https://github.com/samirwadkar31/NodeJs_Application_AzureKubernetesCluster/assets/74359548/8baa2c93-95a9-44ec-818d-7e2f45e1a763)
+
+We have successfully deployed our nodejs application on AKS. 
