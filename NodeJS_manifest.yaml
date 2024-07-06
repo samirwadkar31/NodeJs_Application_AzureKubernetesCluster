@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: sameerkanodeappcontainer
-        image: sameeracr101.azurecr.io/mynodejsapplication:latest
+        image: sameeracr101.azurecr.io/mynodejsapplication:1
         ports:
         - containerPort: 3000  # Updated container port to 3000
 ---
