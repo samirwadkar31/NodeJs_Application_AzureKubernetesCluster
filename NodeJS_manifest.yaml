@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: sameerkanodeappdeployment
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: sameerkanodeapp
@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
       - name: sameerkanodeappcontainer
-        image: sameeracr101.azurecr.io/mynodejsapplication:3
+        image: sameeracr101.azurecr.io/nodejsapp:latest
         ports:
-        - containerPort: 3000  # Updated container port to 3000
+        - containerPort: 3000  
 ---
 apiVersion: v1
 kind: Service
@@ -28,5 +28,5 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 3000  # Updated target port to 3000
+    targetPort: 3000  
   type: LoadBalancer

@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+   ServerAdmin wadkarsamir@gmail.com
+   ServerName mynodejsapp
+   DocumentRoot /var/www/html/NodeJs_Application_AzureKubernetesCluster
+   ErrorLog ${APACHE_LOG_DIR}/mynodejsapp_error.log
+   CustomLog ${APACHE_LOG_DIR}/mynodejsapp_access.log combined
+   ProxyRequests Off
+   ProxyPreserveHost On
+   ProxyPass / http://localhost:3000/
+   ProxyPassReverse / http://localhost:3000/
+</VirtualHost>
