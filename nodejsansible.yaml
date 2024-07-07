@@ -1,33 +1,39 @@
 ---
 - name: Deploy Node.js App with Apache using Ansible
- hosts: 172.206.224.125
- become: yes  # Execute tasks with sudo
- tasks:
-   # Install Node.js and npm
-   - name: Install Node.js and npm
-     apt:
-       name: ['nodejs', 'npm']
-       state: present
-   # Install Node.js application dependencies
-   - name: Install Node.js dependencies
-     npm:
-       path: /var/www/html/NodeJs_Application_AzureKubernetesCluster  # Replace with the path where your package.json is located
-       state: present
-   # Configure Apache VirtualHost for Node.js application
-   - name: Configure Apache VirtualHost
-     template:
-       src: /var/www/html/NodeJs_Application_AzureKubernetesCluster/mynodejsapp.conf.j2   # Replace with your Apache VirtualHost template
-       dest: /etc/apache2/sites-available/mynodejsapp.conf  # Replace with desired conf file name
-     notify:
-       - Restart Apache
- handlers:
-   # Restart Apache service
-   - name: Restart Apache
-     service:
-       name: apache2
-       state: restarted
-   # Restart Node.js application
-   - name: Restart Node.js Application
-     service:
-       name: mynodejsapp
-       state: restarted
+  hosts: 172.206.224.125
+  become: yes  # Execute tasks with sudo
+  tasks:
+    # Install Node.js and npm
+    - name: Install Node.js and npm
+      apt:
+        name:
+          - 'nodejs'
+          - 'npm'
+        state: present
+
+    # Install Node.js application dependencies
+    - name: Install Node.js dependencies
+      npm:
+        path: /var/www/html/NodeJs_Application_AzureKubernetesCluster  # Replace with the path where your package.json is located
+        state: present
+
+    # Configure Apache VirtualHost for Node.js application
+    - name: Configure Apache VirtualHost
+      template:
+        src: /var/www/html/NodeJs_Application_AzureKubernetesCluster/mynodejsapp.conf.j2   # Replace with your Apache VirtualHost template
+        dest: /etc/apache2/sites-available/mynodejsapp.conf  # Replace with desired conf file name
+      notify:
+        - Restart Apache
+
+  handlers:
+    # Restart Apache service
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted
+
+    # Restart Node.js application
+    - name: Restart Node.js Application
+      service:
+        name: mynodejsapp
+        state: restarted
