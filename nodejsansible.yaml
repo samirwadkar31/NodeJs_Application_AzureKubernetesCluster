@@ -1,6 +1,6 @@
 ---
 - name: Deploy Node.js App with Apache using Ansible
- hosts: localhost
+ hosts: 172.206.224.125
  become: yes  # Execute tasks with sudo
  tasks:
    # Install Node.js and npm
