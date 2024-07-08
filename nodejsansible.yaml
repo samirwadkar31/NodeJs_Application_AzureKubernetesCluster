@@ -1,54 +1,46 @@
 ---
 - name: Deploy Node.js App with Apache using Ansible
-  hosts: my_servers
-  become: yes  # Execute tasks with sudo
+  hosts: all
+  become: yes
   tasks:
-    # Add NodeSource repository key for Node.js 14.x
     - name: Add NodeSource repository key for Node.js 14.x
       apt_key:
         url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
         state: present
 
-    # Add NodeSource repository for Node.js 14.x
     - name: Add NodeSource repository for Node.js 14.x
       apt_repository:
         repo: deb https://deb.nodesource.com/node_14.x {{ ansible_distribution_release }} main
         state: present
 
-    # Update apt cache
     - name: Update apt cache
       apt:
         update_cache: yes
 
-    # Install Node.js and npm
     - name: Install Node.js and npm
       apt:
-        name: ['nodejs']
+        name: nodejs
         state: present
 
-    # Install Node.js application dependencies
     - name: Install Node.js dependencies
       npm:
-        path: /var/www/html/NodeJs_Application_AzureKubernetesCluster  # Replace with the path where your package.json is located
+        path: /var/www/html/NodeJs_Application_AzureKubernetesCluster
         state: present
+        executable: npm
+      become: yes
 
-    # Configure Apache VirtualHost for Node.js application
-    - name: Configure Apache VirtualHost
-      template:
-        src: /var/www/html/NodeJs_Application_AzureKubernetesCluster/mynodejsapp.conf.j2  # Replace with your Apache VirtualHost template
-        dest: /etc/apache2/sites-available/mynodejsapp.conf  # Replace with desired conf file name
-      notify:
-        - Restart Apache
+    - name: Copy Apache configuration file
+      copy:
+        src: /var/www/html/NodeJs_Application_AzureKubernetesCluster/apache_nodejs.conf
+        dest: /etc/apache2/sites-available/nodejs.conf
 
-  handlers:
-    # Restart Apache service
+    - name: Enable Node.js site
+      command: a2ensite nodejs.conf
+
+    - name: Disable default site
+      command: a2dissite 000-default.conf
+
     - name: Restart Apache
       service:
         name: apache2
-        state: restarted
-
-    # Restart Node.js application
-    - name: Restart Node.js Application
-      service:
-        name: mynodejsapp
         state: restarted
