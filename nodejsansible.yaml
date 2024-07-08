@@ -29,6 +29,13 @@
         executable: npm
       become: yes
 
+    - name: Change ownership of application directory
+      file:
+        path: /var/www/html/NodeJs_Application_AzureKubernetesCluster
+        owner: samirwadkar31
+        group: samirwadkar31
+        recurse: yes
+
     - name: Copy Apache configuration file
       copy:
         src: /var/www/html/NodeJs_Application_AzureKubernetesCluster/apache_nodejs.conf
