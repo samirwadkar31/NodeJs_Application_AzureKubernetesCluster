@@ -14,14 +14,17 @@
       apt_repository:
         repo: deb https://deb.nodesource.com/node_14.x {{ ansible_distribution_release }} main
         state: present
-      update_cache: yes
+
+    # Update apt cache
+    - name: Update apt cache
+      apt:
+        update_cache: yes
 
     # Install Node.js and npm
     - name: Install Node.js and npm
       apt:
         name: ['nodejs']
         state: present
-        update_cache: yes
 
     # Install Node.js application dependencies
     - name: Install Node.js dependencies
